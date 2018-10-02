@@ -1,0 +1,6 @@
+suite = 'bbob-biobj', algorithm = 'ALG', indicator = 'hyp', folder = '2-moderate_2-moderate', coco_version = ''
+% 
+function = 20, dim =  2, bbob-biobj_f20_d02_hyp.dat, 1:6231|1.4e-03
+function = 20, dim =  3, bbob-biobj_f20_d03_hyp.dat, 1:6231|1.5e+01
+function = 20, dim = 10, bbob-biobj_f20_d10_hyp.dat, 1:6231|7.3e+00
+function = 20, dim = 20, bbob-biobj_f20_d20_hyp.dat, 1:6231|6.2e+01

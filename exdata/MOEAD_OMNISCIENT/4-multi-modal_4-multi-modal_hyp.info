@@ -1,0 +1,6 @@
+suite = 'bbob-biobj', algorithm = 'ALG', indicator = 'hyp', folder = '4-multi-modal_4-multi-modal', coco_version = ''
+% 
+function = 46, dim =  2, bbob-biobj_f46_d02_hyp.dat, 1:27931|2.0e-01
+function = 46, dim =  3, bbob-biobj_f46_d03_hyp.dat, 1:27931|9.0e-02
+function = 46, dim = 10, bbob-biobj_f46_d10_hyp.dat, 1:27931|6.4e+02
+function = 46, dim = 20, bbob-biobj_f46_d20_hyp.dat, 1:27931|2.1e+02

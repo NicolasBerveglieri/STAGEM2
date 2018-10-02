@@ -10,5 +10,3 @@ def Tchebycheff(weights,values,z):
 
 def weighted_sum(weights,values):
     return sum([weights[x] * values[x] for x in range(len(weights))])
-
-

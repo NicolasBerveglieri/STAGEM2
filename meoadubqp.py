@@ -41,9 +41,9 @@ def random_mubqp(n,m,filename,r):
             file.write(s)
     print('done')
     file.close()
-    
 
-def load_data(filename):  
+
+def load_data(filename):
     data = open(filename,"r")
     p = 0
     M = 0
@@ -51,7 +51,7 @@ def load_data(filename):
     d = 0
     cpt = 0
     pdone = False
-    for line in data: 
+    for line in data:
         if line[0] == 'c':
             pass
         elif (line[0] == 'p'):
@@ -73,6 +73,7 @@ def load_data(filename):
 Matrixs = load_data("mydata.dat")
 
 def Tchebycheff(data,z,weights,solution):
+    print("mubqp tche")
     return max([weights[x] * abs(z[x] -evalMubqpMono(data,solution,x)) for x in range(len(weights)) ])
 
 def dominate(solutionA,solutionB):
@@ -102,8 +103,8 @@ def bestObjectiveMubqp(data,solutions):
             if (tmp > z[i]):
                 z[i] = tmp
     return z
-            
-    
+
+
 def weight_vectors(n=10):
     weights = []
     for i in range (0,n+1):
@@ -118,61 +119,61 @@ def vectors_dist(weights):
 
 def childSolution(parentA, parentB):
     return [parentA[x] if  random.randint(0,1) ==1 else parentB[x] for x in range(len(parentA)) ]
-    
+
 def meoad(data,weights,T=4):
-    
+
     #1.1
-    
+
     EP = []
-    
-    #1.3    
+
+    #1.3
 
     current_solutions = [[random.randint(0, 1) for x in range(0,len(Matrixs[0][0]))] for y in range(len(weights))]
     current_solutionsV = [evalMubqpNoWeight(data,current_solutions[x]) for x in range(len(current_solutions))]
-    
+
     print(current_solutionsV)
-    
+
     #1.4
-    
+
     z = bestObjectiveMubqp(data,current_solutions)
-    
-    
+
+
     #1.2
-    
+
     dists = vectors_dist(weights)
-    
+
     B = [heapq.nsmallest(T,range(len(dists)),dists[x].__getitem__) for x in range(len(dists))]
-   
-    
+
+
     #2
-    
-    
+
+
     for stopCrit in range(0,1000):
         for i in range(len(weights)):
-          
+
           #2.1
-          
+
             sample = random.sample(range(0,T), 2)
             x = sample[0]
             l = sample[1]
             child = childSolution(current_solutions[B[i][x]],current_solutions[B[i][l]])
-            
+
             #2.2
-            
+
             #2.3
-            
+
             for j in range(len(weights[0])):
                 objJValue = evalMubqpMono(data,child,j)
                 if objJValue > z[j]:
                     z[j] = objJValue
-                    
+
             #2.4
-            
+
             for index in B[i]:
                 if Tchebycheff(data,z,weights[index],child) < Tchebycheff(data,z,weights[index],current_solutions[index]):
                     current_solutions[index] = child
                     current_solutionsV[index] =  evalMubqpNoWeight(data,child)
-            
+
             #2.5
             dominated = False
             for vec in EP:
@@ -184,13 +185,13 @@ def meoad(data,weights,T=4):
             if len(EP) == 0 or not(dominated):
                 EP.append(current_solutionsV[index])
             #3
-            
+
     return EP
-    
-res = meoad(Matrixs,weight_vectors(10))
+
+#res = meoad(Matrixs,weight_vectors(10))
 #[print(res[x]) for x in range(len(res))]
-#random_mubqp(10,2,"mydata.dat",0.3) 
-    
+#random_mubqp(10,2,"mydata.dat",0.3)
+
 
 print('The scikit-learn version is {}.'.format(sklearn.__version__))
 """

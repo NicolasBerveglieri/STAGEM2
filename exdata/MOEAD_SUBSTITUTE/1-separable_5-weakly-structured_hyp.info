@@ -1,0 +1,6 @@
+suite = 'bbob-biobj', algorithm = 'ALG', indicator = 'hyp', folder = '1-separable_5-weakly-structured', coco_version = ''
+% 
+function =  9, dim =  2, bbob-biobj_f09_d02_hyp.dat, 1:3999|2.3e-02
+function =  9, dim =  3, bbob-biobj_f09_d03_hyp.dat, 1:3999|1.1e+01
+function =  9, dim = 10, bbob-biobj_f09_d10_hyp.dat, 1:3999|1.5e+01
+function =  9, dim = 20, bbob-biobj_f09_d20_hyp.dat, 1:3999|7.8e+01

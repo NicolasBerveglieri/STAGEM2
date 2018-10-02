@@ -1,3 +1,5 @@
+from __future__ import division
+
 # -*- coding: utf-8 -*-
 """
 Created on Thu Apr 19 15:25:22 2018
@@ -5,6 +7,7 @@ Created on Thu Apr 19 15:25:22 2018
 @author: nicol
 """
 from random import *
+
 
 def mean(s1,s2):
     return [(s1[x]+s2[x])/2 for x in range(len(s1))]
@@ -29,12 +32,12 @@ def DE(s1,s2,s3,F=0.5,CR=1):
             
 
 def repair(s):
-    return [0 if x < 0 else 1 if x>1  else x for x in s]
+    return [-100 if x < -100 else 100 if x>100  else x for x in s]
 
 
 def mutation1(s,rate,n=20):     
     rand = uniform(0,1)
-    return repair([s[x] if rand > rate else s[x] + sigma(n) * (1 - 0) for x in range(len(s)) ])
+    return repair([s[x] if rand > rate else s[x] + sigma(n) * (100 - (-100)) for x in range(len(s)) ])
     
 def sigma(n):
     rand = uniform(0,1)
@@ -58,3 +61,10 @@ def any_op(s1,s2):
 
 
 
+def weight_vectors(n=10):
+    weights = []
+    for i in range (0,n+1):
+        weights.append([i/n,(n-i) / n])
+    return weights
+    
+    
